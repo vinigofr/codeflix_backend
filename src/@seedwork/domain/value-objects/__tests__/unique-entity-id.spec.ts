@@ -1,5 +1,5 @@
-import InvalidUuidError from '../../@seedwork/errors/invalid-uuid.error';
-import UniqueEntityId from './unique-entity-id';
+import InvalidUuidError from '../../../errors/invalid-uuid.error';
+import UniqueEntityId from '../unique-entity-id';
 
 const spyValidateMethod = () =>
   jest.spyOn(UniqueEntityId.prototype as any, 'validate');
@@ -7,6 +7,11 @@ const spyValidateMethod = () =>
 describe('UniqueEntityId Unit Tests', () => {
   const validateSpy = spyValidateMethod();
   beforeEach(() => validateSpy.mockClear());
+
+  test('Constructor test', () => {
+    const uuid = new UniqueEntityId();
+    expect(uuid).toBeTruthy;
+  });
 
   it('should throw error when uuid is invalid', () => {
     const validateSpy = jest.spyOn(UniqueEntityId.prototype as any, 'validate');

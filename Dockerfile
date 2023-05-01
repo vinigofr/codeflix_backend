@@ -3,7 +3,8 @@ FROM node:18.15-slim
 RUN apt update && apt install -y --no-install-recommends \
     git \
     ca-certificates \
-    openssh-client
+    openssh-client \
+    default-jre
 
 USER node
 

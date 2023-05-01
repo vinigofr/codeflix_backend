@@ -1,4 +1,4 @@
-import UniqueEntityId from '../../../@seedwork/domain/unique-entity-id';
+import UniqueEntityId from '../../../@seedwork/domain/value-objects/unique-entity-id';
 import { Category } from './category';
 import { omit } from 'lodash';
 import { validate as uuidValidate } from 'uuid';
