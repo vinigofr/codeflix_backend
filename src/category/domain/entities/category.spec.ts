@@ -1,3 +1,4 @@
+import exp from 'constants';
 import UniqueEntityId from '../../../@seedwork/domain/value-objects/unique-entity-id';
 import { Category } from './category';
 import { omit } from 'lodash';
@@ -88,5 +89,26 @@ describe('Category Unit Tests', () => {
   test('getter created_at property', () => {
     const category = new Category({ name: 'Fake movie' });
     expect(category.created_at).toBeInstanceOf(Date);
+  });
+
+  test('test update method', () => {
+    const obj = { description: 'new description', name: 'New Fake Movie' };
+
+    const category = new Category({ name: 'Fake movie' });
+    category.update(obj);
+
+    expect(category.description).toEqual(obj.description);
+    expect(category.name).toEqual(obj.name);
+  });
+
+  test('test activate/deactivate methods', () => {
+    const category = new Category({ name: 'Fake movie', is_active: true });
+    expect(category.is_active).toBeTruthy();
+
+    category.deactivate();
+    expect(category.is_active).toBeFalsy();
+
+    category.activate();
+    expect(category.is_active).toBeTruthy();
   });
 });
