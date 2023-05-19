@@ -1,7 +1,6 @@
 import UniqueEntityId from '../../../@seedwork/domain/value-objects/unique-entity-id';
 import { Category } from './category';
 import { omit } from 'lodash';
-import { validate as uuidValidate } from 'uuid';
 
 describe('Category Unit Tests', () => {
   test('constructor test', () => {
@@ -41,13 +40,13 @@ describe('Category Unit Tests', () => {
 
     data.forEach(({ props, id }) => {
       const category = new Category(props, id);
-      expect(category.id).toBeInstanceOf(UniqueEntityId);
-      expect(category.id).not.toBeNull();
+      expect(category.uniqueEntityId).toBeInstanceOf(UniqueEntityId);
+      expect(category.uniqueEntityId).not.toBeNull();
     });
 
     const category = new Category({ name: 'Fake movie' }, 'some_id' as any);
-    expect(category.id).toBe('some_id');
-    expect(category.id).toBeTruthy();
+    expect(category.uniqueEntityId).toBe('some_id');
+    expect(category.uniqueEntityId).toBeTruthy();
   });
 
   test('getter name', () => {
