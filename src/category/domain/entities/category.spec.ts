@@ -1,14 +1,18 @@
-import exp from 'constants';
 import UniqueEntityId from '../../../@seedwork/domain/value-objects/unique-entity-id';
 import { Category } from './category';
 import { omit } from 'lodash';
 
 describe('Category Unit Tests', () => {
+  beforeEach(() => {
+    Category.validate = jest.fn();
+  });
+
   test('constructor test', () => {
     let category = new Category({
       name: 'Fake movie',
       description: 'Some description',
     });
+    expect(Category.validate).toHaveBeenCalled();
 
     let props = omit(category.props, 'created_at');
     expect(category.props.created_at).toBeInstanceOf(Date);
@@ -96,6 +100,8 @@ describe('Category Unit Tests', () => {
 
     const category = new Category({ name: 'Fake movie' });
     category.update(obj);
+
+    expect(Category.validate).toHaveBeenCalledTimes(2);
 
     expect(category.description).toEqual(obj.description);
     expect(category.name).toEqual(obj.name);

@@ -7,7 +7,8 @@
     "ts-node": "ts-node",
     "tsc": "tsc",
     "clean:tsc": "clear && rm tsconfig.tsbuildinfo && echo Arquivo eliminado com êxito",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest  --watchAll"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "class-validator": "^0.14.0",
     "lodash": "^4.17.21",
     "uuid": "^9.0.0"
   }
